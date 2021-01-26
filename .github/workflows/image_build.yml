@@ -10,4 +10,5 @@ jobs:
         docker build . -t test
     - name: Run test
       run: |
-        docker run --rm test bash -c './deep_simulator.sh -i example/001c577a-a502-43ef-926a-b883f94d157b.true_fasta -n -1'
+        docker run --rm test bash -c './deep_simulator.sh -i example/001c577a-a502-43ef-926a-b883f94d157b.true_fasta -n -1 -B 2 '
+        ls ./
