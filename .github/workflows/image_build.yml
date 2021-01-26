@@ -1,33 +1,13 @@
-name: CI
+name: ImageBuild
 on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
-      with:
-        python-version: '3.6'
-        architecture: 'x64'
-    - name: Install the library
+    - name: Build Docker Image
       run: |
-        pip install nbdev jupyter
-        pip install -e .
-    - name: Read all notebooks
+        docker build . -t test
+    - name: Run test
       run: |
-        nbdev_read_nbs
-    - name: Check if all notebooks are cleaned
-      run: |
-        echo "Check we are starting with clean git checkout"
-        if [ -n "$(git status -uno -s)" ]; then echo "git status is not clean"; false; fi
-        echo "Trying to strip out notebooks"
-        nbdev_clean_nbs
-        echo "Check that strip out was unnecessary"
-        git status -s # display the status to see which nbs need cleaning up
-        if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
-    - name: Check if there is no diff library/notebooks
-      run: |
-        if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
-    - name: Run tests
-      run: |
-        nbdev_test_nbs
+        docker run --rm test bash -c './deep_simulator.sh -i example/001c577a-a502-43ef-926a-b883f94d157b.true_fasta -n -1'
