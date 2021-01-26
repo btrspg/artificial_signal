@@ -1,6 +1,6 @@
-From continuumio/miniconda3
+From continuumio/miniconda
 
-ARG depends='git build-essential'
+ARG depends='git build-essential libidn11'
 
 RUN apt -y update \
     && apt install -y ${depends}
