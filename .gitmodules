@@ -1,0 +1,9 @@
+[submodule "NanoSim"]
+	path = NanoSim
+	url = https://github.com/bcgsc/NanoSim
+[submodule "DeepSimulator"]
+	path = DeepSimulator
+	url = https://github.com/liyu95/DeepSimulator
+[submodule "NanosigSim"]
+	path = NanosigSim
+	url = https://github.com/zpllx/NanosigSim
