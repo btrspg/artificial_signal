@@ -1,0 +1,9 @@
+nbdev
+tensorflow==1.2.1
+tflearn==0.3.2
+tqdm==4.19.4
+scipy==0.18.1
+h5py==2.7.1
+numpy==1.13.1
+scikit-learn==0.20.3
+biopython==1.74
